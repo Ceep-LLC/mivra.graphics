@@ -2,7 +2,7 @@
 import "./home.css";
 import { useState, useEffect } from "react";
 
-import DynamicBackground from "@/components/DynamicBackground/DynamicBackground";
+import FloralHero from "@/components/HeroVisuals/FloralHero";
 import Copy from "@/components/Copy/Copy";
 import BtnLink from "@/components/BtnLink/BtnLink";
 
@@ -162,40 +162,38 @@ export default function Home() {
           </div>
         </div>
       )}
+      
+      <FloralHero />
 
-      <section className="hero">
-        <DynamicBackground logoPath="/images/logos/logo_light.png" />
+      <section className="hero topHero">
 
         <div className="hero-content">
           <div className="hero-header">
-            <div className="hero-header-col-lg"></div>
             <div className="hero-header-col-sm">
               <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
-                <h3>
-                  Systems thinking and creative execution brought into web
-                  development for consistent outcomes.
-                </h3>
+                <h3 className="topHero_slogan">IN BEAUTY <br />WE TRUST.</h3>
               </Copy>
             </div>
           </div>
 
-          <div className="hero-footer">
-            <div className="hero-footer-col-lg">
-              <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
-                <p className="sm caps mono">Studios</p>
-                <p className="sm caps mono">Toronto and Copenhagen</p>
-              </Copy>
+          <div className="topHero_footer hero-footer">
+            <div className="topHero_footerStart">
+              
+                <div className="topHero_copyGrid">
+                  <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
+                  <p className="topHero_copy">
+                    MIVRA（ミブラ）は、福島県いわき市を拠点とするデザインスタジオです。流行や評価ではなく、「自分が美しいと思うもの」を信じて形にしています。
+                  </p>
+                  </Copy>
+                  <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
+                  <p className="topHero_copy en">
+                    MIVRA is a design studio based in Iwaki, Japan. We create not for trends or praise, but from a belief in what we find truly beautiful.
+                  </p>
+                  </Copy>
+                </div>
+              
             </div>
-            <div className="hero-footer-col-sm">
-              <div className="hero-tags">
-                <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
-                  <p className="sm caps mono">Web Systems</p>
-                  <p className="sm caps mono">Interface Design</p>
-                  <p className="sm caps mono">Creative Development</p>
-                  <p className="sm caps mono">End to End Delivery</p>
-                </Copy>
-              </div>
-
+            <div className="topHero_footerEnd">
               <div className="hero-link">
                 <BtnLink route="/contact" label="contact" />
               </div>
@@ -203,6 +201,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </>
   );
 }

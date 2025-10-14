@@ -308,10 +308,10 @@ const Menu = ({ onMenuStateChange }) => {
 
   return (
     <>
-      <div className="nav-container">
+      <header className="nav-container">
         <div className="nav" ref={navRef}>
           <div className="nav-logo">
-            <div className="revealer">
+            <h1 className="revealer">
               <a
                 href="/"
                 ref={navLogoRef}
@@ -326,11 +326,11 @@ const Menu = ({ onMenuStateChange }) => {
               >
                 <img
                   className="logo-img"
-                  src="/images/logos/logo_light.png"
-                  alt=""
+                  src="/images/logos/type_wh.svg"
+                  alt="MIVRA(ミブラ)"
                 />
               </a>
-            </div>
+            </h1>
           </div>
           <div className="nav-items">
             <div className="nav-menu-time">
@@ -348,7 +348,7 @@ const Menu = ({ onMenuStateChange }) => {
             </div>
           </div>
         </div>
-      </div>
+      </header>
       <div className="menu" ref={menuRef}>
         <div className="menu-overlay" ref={menuOverlayRef}>
           <div className="menu-overlay-nav">
@@ -369,7 +369,7 @@ const Menu = ({ onMenuStateChange }) => {
                   navigateTo("/");
                 }}
               >
-                <h1>index,</h1>
+                <h1>TOPPAGE,</h1>
               </a>
             </div>
             <div className="revealer">
@@ -380,7 +380,7 @@ const Menu = ({ onMenuStateChange }) => {
                   navigateTo("/work");
                 }}
               >
-                <h1>work,</h1>
+                <h1>WORKS,</h1>
               </a>
             </div>
             <div className="revealer">
@@ -428,22 +428,10 @@ const Menu = ({ onMenuStateChange }) => {
                 <div className="revealer">
                   <a
                     className="sm caps mono"
-                    href="https://www.youtube.com/@codegrid"
-                  >
-                    YouTube
-                  </a>
-                </div>
-                <div className="revealer">
-                  <a
-                    className="sm caps mono"
-                    href="https://www.instagram.com/codegridweb/"
+                    href="https://www.instagram.com/kzs86/"
+                    target="_blank"
                   >
                     Instagram
-                  </a>
-                </div>
-                <div className="revealer">
-                  <a className="sm caps mono" href="https://x.com/codegridweb">
-                    X
                   </a>
                 </div>
               </div>

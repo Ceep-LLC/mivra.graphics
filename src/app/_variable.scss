@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+/* ******************************
+ *
+ * RESPONSIVE MIXIN
+ *
+ * ****************************** */
+$breakpoint-sm: 400px !default;
+$breakpoint-md: 768px !default;
+$breakpoint-lg: 1000px !default;
+$breakpoints: (
+  'sm': 'screen and (min-width: 320px)',
+  'md': 'screen and (min-width: 600px)',
+  'lg': 'screen and (min-width: 1025px)',
+  'xl': 'screen and (min-width: 1921px)'
+) !default;
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/* ******************************
+ *
+ * FONT SETTINGS
+ *
+ * ****************************** */
+$black: #000000;
+$white: #FFFFFF;
+$colorMain: #87b828;
+$colorMainDark: #229C2A;
+$colorAccent: #222e0a;
+$colorText: #505050;
+
+
+@keyframes loopCl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes loopClRv {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

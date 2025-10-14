@@ -1,0 +1,183 @@
+@import '../../app/_variable';
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.menu a,
+.menu p {
+  position: relative;
+  color: var(--foreground);
+  display: block;
+  text-decoration: none;
+  line-height: 1;
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  z-index: 1000;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.nav {
+  pointer-events: all;
+  position: relative;
+  width: 100vw;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav a,
+.nav p {
+  position: relative;
+  color: var(--foreground);
+  display: block;
+  text-decoration: none;
+  line-height: 1;
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-logo {
+  flex: 2;
+}
+
+.nav-items {
+  flex: 1;
+  display: flex;
+}
+
+.nav-menu-toggle-open,
+.nav-menu-time {
+  flex: 1;
+}
+
+.nav-menu-toggle-open {
+  display: flex;
+  justify-content: flex-end;
+  height: max-content;
+}
+
+.nav-menu-toggle-open .revealer {
+  cursor: pointer;
+}
+
+img.logo-img {
+  @include mq(sm) {width: 6.4rem;}
+  @include mq(md) {width: 6.4rem;}
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--color-base);
+  will-change: opacity;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+}
+
+.menu-overlay-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu-overlay-nav-toggle-close {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  height: max-content;
+}
+
+.menu-overlay-nav-toggle-close .revealer {
+  cursor: pointer;
+}
+
+.menu-overlay a,
+.menu-overlay p {
+  color: var(--foreground);
+}
+
+.menu-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.menu-footer-col:nth-child(1) {
+  flex: 2;
+}
+
+.menu-footer-col:nth-child(2) {
+  flex: 1;
+}
+
+.socials {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+.menu-overlay-items {
+  width: 75%;
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0rem 1rem;
+  align-items: flex-start;
+}
+
+.menu-overlay-items .revealer {
+  flex: 0 0 auto;
+  min-width: max-content;
+}
+
+.revealer {
+  position: relative;
+  width: max-content;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 1000px) {
+  .nav-menu-time {
+    display: none;
+  }
+
+  .menu-overlay-items {
+    flex-direction: column;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .socials {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+}

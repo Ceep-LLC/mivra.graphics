@@ -156,14 +156,13 @@ const page = () => {
         <div className="fc-col-lg">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">Developed by Codegrid</p>
             </div>
           </div>
         </div>
         <div className="fc-col-sm">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">&copy; 2025 All Rights Reserved</p>
+              <p className="sm caps">&copy; 2025 Ceep LLC / MIVRA</p>
             </div>
           </div>
         </div>
