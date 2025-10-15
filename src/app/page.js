@@ -163,44 +163,46 @@ export default function Home() {
         </div>
       )}
       
-      <FloralHero />
+      <div className="topDocument">
+        <FloralHero />
 
-      <section className="hero topHero">
+        <section className="hero topHero">
 
-        <div className="hero-content">
-          <div className="hero-header">
-            <div className="hero-header-col-sm">
-              <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
-                <h3 className="topHero_slogan">IN BEAUTY <br />WE TRUST.</h3>
-              </Copy>
+          <div className="hero-content">
+            <div className="hero-header">
+              <div className="hero-header-col-sm">
+                <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
+                  <h3 className="topHero_slogan">IN BEAUTY <br />WE TRUST.</h3>
+                </Copy>
+              </div>
             </div>
-          </div>
 
-          <div className="topHero_footer hero-footer">
-            <div className="topHero_footerStart">
-              
-                <div className="topHero_copyGrid">
-                  <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
-                  <p className="topHero_copy">
-                    MIVRA（ミブラ）は、福島県いわき市を拠点とするデザインスタジオです。流行や評価ではなく、「自分が美しいと思うもの」を信じて形にしています。
-                  </p>
-                  </Copy>
-                  <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
-                  <p className="topHero_copy en">
-                    MIVRA is a design studio based in Iwaki, Japan. We create not for trends or praise, but from a belief in what we find truly beautiful.
-                  </p>
-                  </Copy>
+            <div className="topHero_footer hero-footer">
+              <div className="topHero_footerStart">
+                
+                  <div className="topHero_copyGrid">
+                    <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
+                    <p className="topHero_copy">
+                      MIVRA（ミブラ）は、福島県いわき市を拠点とするデザインスタジオです。流行や評価ではなく、「自分が美しいと思うもの」を信じて形にしています。
+                    </p>
+                    </Copy>
+                    <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
+                    <p className="topHero_copy en">
+                      MIVRA is a design studio based in Iwaki, Japan. We create not for trends or praise, but from a belief in what we find truly beautiful.
+                    </p>
+                    </Copy>
+                  </div>
+                
+              </div>
+              <div className="topHero_footerEnd">
+                <div className="hero-link">
+                  <BtnLink route="/contact" label="contact" />
                 </div>
-              
-            </div>
-            <div className="topHero_footerEnd">
-              <div className="hero-link">
-                <BtnLink route="/contact" label="contact" />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
     </>
   );

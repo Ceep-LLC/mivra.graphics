@@ -1,5 +1,6 @@
 import "./globals.css";
 import ClientLayout from "@/client-layout";
+import CustomCursor from "@/components/CustomCursor";
 import { ViewTransitions } from "next-view-transitions";
 import localFont from "next/font/local";  
 
@@ -21,7 +22,10 @@ export default function RootLayout({ children }) {
     <html lang="ja" className={myFont.variable}>
       <body>
         <ViewTransitions>
-          <ClientLayout>{children}</ClientLayout>
+          <ClientLayout>
+            {children}
+              <CustomCursor />
+          </ClientLayout>
         </ViewTransitions>
       </body>
     </html>
