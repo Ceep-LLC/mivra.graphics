@@ -1,14 +1,32 @@
 import "./globals.css";
 import ClientLayout from "@/client-layout";
 import CustomCursor from "@/components/CustomCursor";
+import NoiseOverlay from "@/components/NoiseOverlay";
 import { ViewTransitions } from "next-view-transitions";
 import localFont from "next/font/local";  
 
-const myFont = localFont({
+// 英字
+const enFont = localFont({
   src: [
     { path: "../fonts/AmelieFierce-Regular.otf", weight: "400", style: "normal" },
   ],
   variable: "--font-unique-en",
+  display: "swap",
+});
+const enFontMain = localFont({
+  src: [
+    { path: "../fonts/HelveticaNeueCyr_Medium.ttf", weight: "400", style: "normal" },
+  ],
+  variable: "--font-main-en",
+  display: "swap",
+});
+
+// 日本語本文用
+const jpFont = localFont({
+  src: [
+    { path: "../fonts/GenWanMin2JP-L.otf", weight: "400", style: "normal" },
+  ],
+  variable: "--font-main-jp",
   display: "swap",
 });
 
@@ -19,12 +37,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ja" className={myFont.variable}>
+    <html lang="ja" className={`${enFont.variable} ${jpFont.variable} ${enFontMain.variable}`}>
       <body>
         <ViewTransitions>
           <ClientLayout>
             {children}
               <CustomCursor />
+              <NoiseOverlay />
           </ClientLayout>
         </ViewTransitions>
       </body>

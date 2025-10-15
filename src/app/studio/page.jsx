@@ -90,7 +90,7 @@ const page = () => {
     <>
       <div className="studio" ref={studioRef}>
         <section className="studio-hero">
-          <h1 className="caps">Wu</h1>
+          <h1 className="caps">MIVRA</h1>
         </section>
 
         <section className="studio-hero-img">
@@ -103,11 +103,19 @@ const page = () => {
           <div className="studio-header-copy">
             <Copy>
               <h2>
-                At Wu Wei Studio, we approach every project with quiet focus.
-                Through close collaboration and considered process, we build
-                digital work that reflects both the needs of our clients and the
-                values of our practice.
+              At MIVRA, we create from instinct and conviction.
+              Guided not by trends or approval, but by a quiet belief in what we find beautiful,
+              we shape work that carries our sense of balance, restraint, and grace.
               </h2>
+              <p>
+              MIVRA（ミブラ）は、デザイナー兼ウェブエンジニア<br />
+              磯上和志が主宰する、<br />
+              福島県いわき市のデザインスタジオです。<br />
+              ウェブやグラフィックを中心に、<br />
+              ブランドの世界観を静かに、確かに形にします。<br />
+              流行や評価ではなく「自分が美しいと思う感覚」に正直に。<br />
+              その信念を軸に、誠実で凛としたデザインをつくっています。
+              </p>
             </Copy>
           </div>
         </section>

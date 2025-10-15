@@ -228,7 +228,7 @@ export default function WavyHeadline() {
           position: fixed;
           inset: 0;
           width: 100%;
-          height: 100svh;
+          height: 100lvh;
           pointer-events: none;
         }
         canvas {

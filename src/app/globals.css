@@ -1,5 +1,55 @@
+/* ******************************
+ *
+ * RESPONSIVE MIXIN
+ *
+ * ****************************** */
+/* ******************************
+ *
+ * FONT SETTINGS
+ *
+ * ****************************** */
+@-webkit-keyframes loopCl {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+@keyframes loopCl {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes loopClRv {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+@keyframes loopClRv {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
 :root {
-  --font-main: helvetica-neue-lt-pro, dnp-shuei-gothic-kin-std, sans-serif;
+  --font-main: var(--font-main-en), var(--font-main-jp), sans-serif;
   --font-unique: var(--font-unique-en), sans-serif;
   --color-base: #000000;
   --background: #1a1a1a;
@@ -173,4 +223,17 @@ html.lenis {
   z-index: 1;
   -webkit-animation: none !important;
           animation: none !important;
+}
+
+@media screen and (min-width: 320px) {
+  .noise-overlay {
+    mix-blend-mode: soft-light;
+    opacity: 1;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .noise-overlay {
+    mix-blend-mode: screen;
+    opacity: 0.32;
+  }
 }/*# sourceMappingURL=globals.css.map */

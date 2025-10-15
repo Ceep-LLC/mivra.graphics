@@ -1,5 +1,7 @@
+@import '_variable';
+
 :root {
-  --font-main: helvetica-neue-lt-pro, dnp-shuei-gothic-kin-std, sans-serif;
+  --font-main: var(--font-main-en), var(--font-main-jp), sans-serif;
   --font-unique: var(--font-unique-en), sans-serif;
 
   --color-base: #000000;
@@ -158,4 +160,9 @@ html.lenis {
 ::view-transition-old(root) {
   z-index: 1;
   animation: none !important;
+}
+
+.noise-overlay {
+  @include mq(sm) {mix-blend-mode: soft-light; opacity:    1;}
+  @include mq(lg) {mix-blend-mode:     screen; opacity: 0.32;}
 }

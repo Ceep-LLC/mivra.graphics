@@ -99,14 +99,14 @@ const page = () => {
     <div className="contact" ref={contactRef}>
       <div className="contact-img-wrapper">
         <div className="contact-img">
-          <img src="/images/contact/contact.jpeg" alt="" />
+          <img src="/images/contact/contact.webp" alt="MIVRA" />
         </div>
       </div>
       <div className="contact-copy">
         <div className="contact-copy-bio">
           <Copy delay={1}>
-            <p className="caps sm">Wu Wei Studios</p>
-            <p className="caps sm">Toronto / Copenhagen</p>
+            <p className="caps sm">MIVRA</p>
+            <p className="caps sm">Fukushima / Tokyo</p>
           </Copy>
         </div>
 
@@ -115,24 +115,25 @@ const page = () => {
             <p className="caps sm">Web Systems</p>
             <p className="caps sm">Interface Design</p>
             <p className="caps sm">Creative Development</p>
-            <p className="caps sm">End To End Delivery</p>
+            <p className="caps sm">Graphic Design</p>
+            <p className="caps sm">Photography</p>
+            <p className="caps sm">Videography</p>
           </Copy>
         </div>
 
         <div className="contact-copy-addresses">
           <div className="contact-address">
             <Copy delay={1.3}>
-              <p className="caps sm">Toronto</p>
-              <p className="caps sm">Studio 302, Richmond St W</p>
-              <p className="caps sm">M5V 3A8</p>
+              <p className="caps sm">Fukushima, Japan</p>
+              <p className="caps sm">4 Tomarigi Terrace</p>
+              <p className="caps sm">6-10 Umegaka-cho, Taira, Iwaki</p>
             </Copy>
           </div>
-
           <div className="contact-address">
-            <Copy delay={1.45}>
-              <p className="caps sm">Copenhagen</p>
-              <p className="caps sm">Unit 02 Refshalevej 167A</p>
-              <p className="caps sm">1432 KØBENHAVN K</p>
+            <Copy delay={1.3}>
+              <p className="caps sm">福島</p>
+              <p className="caps sm">いわき市平梅香町6-10</p>
+              <p className="caps sm">とまり木テラス 4号棟</p>
             </Copy>
           </div>
         </div>
