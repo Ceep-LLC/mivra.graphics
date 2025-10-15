@@ -310,6 +310,7 @@
 // Hero Section
 .topHero {
   &_slogan {
+    opacity: 0;
     font-family: var(--font-unique);
     font-weight: 400;
     line-height: .96;

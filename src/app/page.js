@@ -3,6 +3,7 @@ import "./home.css";
 import { useState, useEffect } from "react";
 
 import FloralHero from "@/components/HeroVisuals/FloralHero";
+import WavyHeadline from "@/components/HeroVisuals/WavyHeadline";
 import Copy from "@/components/Copy/Copy";
 import BtnLink from "@/components/BtnLink/BtnLink";
 
@@ -165,6 +166,19 @@ export default function Home() {
       
       <div className="topDocument">
         <FloralHero />
+
+        <WavyHeadline
+          text={`IN BEAUTY\nWE TRUST.`}
+          fontFamily="'AmelieFierce', serif"
+          fontURL="/fonts/AmelieFierce-Regular.otf"  // CSSで既に読み込んでいるなら省略OK
+          color="#e9e4db"
+          // 調整パラメータ例（任意）
+          noiseAmp={0.05}
+          noiseScale={2.0}
+          flowSpeed={0.10}
+          mouseBoost={0.1}
+          mouseRadius={0.33}
+        />
 
         <section className="hero topHero">
 
