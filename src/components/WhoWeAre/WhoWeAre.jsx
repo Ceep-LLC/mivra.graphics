@@ -111,19 +111,19 @@ const WhoWeAre = () => {
           </div>
 
           <div className="whoweare-img" id="whoweare-img-1">
-            <img src="/images/who-we-are/team-1.jpg" alt="" />
+            <img src="/images/who-we-are/team-1.webp" alt="" />
           </div>
           <div className="whoweare-img" id="whoweare-img-2">
-            <img src="/images/who-we-are/team-2.jpg" alt="" />
+            <img src="/images/who-we-are/team-2.webp" alt="" />
           </div>
           <div className="whoweare-img" id="whoweare-img-3">
-            <img src="/images/who-we-are/team-3.jpg" alt="" />
+            <img src="/images/who-we-are/team-3.webp" alt="" />
           </div>
           <div className="whoweare-img" id="whoweare-img-4">
-            <img src="/images/who-we-are/team-4.jpg" alt="" />
+            <img src="/images/who-we-are/team-4.webp" alt="" />
           </div>
           <div className="whoweare-img" id="whoweare-img-5">
-            <img src="/images/who-we-are/team-5.jpg" alt="" />
+            <img src="/images/who-we-are/team-5.webp" alt="" />
           </div>
         </div>
       </div>

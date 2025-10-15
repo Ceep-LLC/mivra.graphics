@@ -154,15 +154,42 @@ const page = () => {
         <section className="recognition">
           <div className="recognition-copy">
             <Copy>
-              <p className="sm caps">(Recognition)</p>
+              <p className="sm caps">( PHILOSOPHY )</p>
               <br />
               <h2>
-                Our work has been recognized by digital platforms and design
-                communities for its clarity, consistency, and attention to
-                detail. We focus on building systems that go beyond visuals
-                experiences.
+              At MIVRA, design begins with belief.
+              We create from what we truly find beautiful — with precision, restraint, and intent.
+              Our work seeks harmony between function and feeling, shaping experiences that endure quietly over time.
               </h2>
             </Copy>
+          </div>
+          <div className="philosophy">
+            <div className="philosophy_img"></div>
+            <div className="philosophy_grid">
+              <p className="philosophy_item">
+                私は、自分が「美しい」と思えるものしか信じません。<br className="pc" />
+                その感覚が鈍れば、誰かの時間を豊かにすることもできないと思うからです。<br /><br />
+                私は、会社を大きくしたいわけでも、<br className="pc" />
+                ただ仕事を増やしたいわけでもありません。<br className="pc" />
+                ただ——“作品をつくりたいだけ”なのです。<br /><br />
+                丁寧な手仕事こそが、機能して人や社会の役に立つ。<br className="pc" />
+                その過程こそが、私にとっての「仕事」です。<br /><br />
+                そんな私や作品を信じてくれる大切なお客様、<br className="pc" />
+                そして日々ともに歩む社員の皆。<br className="pc" />
+                いつも本当にありがとうございます。<br /><br />
+                私は、美しく、前衛的で、圧倒的で、双方的なデザイン制作を通じて、<br className="pc" />
+                世の中に貢献し、大切な人たちの笑顔を守れるよう、自分の道を進みます。
+              </p>
+              <p className="philosophy_item en">
+                I only believe in what I find beautiful.
+                Because when that sense dulls, I can no longer enrich someone else’s time through what I create.
+                I have no desire to grow a company, nor to simply take on more work.
+                I just want to create — to make works of art.
+                It is through careful, thoughtful craftsmanship that design gains function and meaning.
+                That process itself is what “work” means to me.
+                To my dear clients who trust in me and my creations, and to my team who walks this path with me — thank you, always.
+                Through design that is beautiful, avant-garde, and profoundly human, I will continue walking my own path — to contribute to the world, and to protect the smiles of those I hold dear.                </p>
+            </div>
           </div>
         </section>
       </div>

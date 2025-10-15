@@ -199,7 +199,6 @@
 .recognition {
   position: relative;
   width: 100%;
-  height: 100svh;
   padding: 1.5rem;
   background-color: var(--background);
   color: var(--foreground);
@@ -207,6 +206,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -214,6 +217,16 @@
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+}
+@media screen and (min-width: 320px) {
+  .recognition {
+    margin-top: 16rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .recognition {
+    margin-top: 16rem;
+  }
 }
 
 .recognition-copy {
@@ -257,5 +270,87 @@
   .mission-intro {
     min-height: 100svh;
     height: 100%;
+  }
+}
+.philosophy {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+@media screen and (min-width: 320px) {
+  .philosophy {
+    padding: 64px 0;
+  }
+}
+@media screen and (min-width: 600px) {
+  .philosophy {
+    padding: 64px 2.5vw 64px;
+  }
+}
+@media screen and (min-width: 320px) {
+  .philosophy_img {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 600px) {
+  .philosophy_img {
+    width: 30%;
+  }
+}
+.philosophy_grid {
+  display: grid;
+}
+@media screen and (min-width: 320px) {
+  .philosophy_grid {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    font-size: 1.26rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .philosophy_grid {
+    width: 50%;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+    font-size: 1.4rem;
+  }
+}
+.philosophy_item {
+  text-align: left;
+}
+.philosophy_item.en {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  line-height: 1.42;
+  opacity: 0.8;
+}
+@media screen and (min-width: 320px) {
+  .philosophy_item.en {
+    font-size: 80%;
+  }
+}
+@media screen and (min-width: 600px) {
+  .philosophy_item.en {
+    font-size: 88%;
+  }
+}
+@media screen and (min-width: 320px) {
+  .philosophy_item .pc {
+    display: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .philosophy_item .pc {
+    display: block;
   }
 }/*# sourceMappingURL=studio.css.map */

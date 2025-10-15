@@ -24,7 +24,7 @@ const enFontMain = localFont({
 // 日本語本文用
 const jpFont = localFont({
   src: [
-    { path: "../fonts/GenWanMin2JP-L.otf", weight: "400", style: "normal" },
+    { path: "../fonts/yu-gothic-regular.ttf", weight: "400", style: "normal" },
   ],
   variable: "--font-main-jp",
   display: "swap",
