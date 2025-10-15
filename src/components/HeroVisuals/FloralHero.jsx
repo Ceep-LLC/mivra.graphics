@@ -5,19 +5,19 @@ import * as THREE from "three";
 export default function FloralHero_Fake3D() {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
-  const motionBtnRef = useRef(null);
+  const debugRef = useRef(null);
+  const orientation = useRef({ alpha: 0, beta: 0, gamma: 0 });
+  const tiltEnabled = useRef(false);
 
   useEffect(() => {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
-    const motionBtn = motionBtnRef.current;
-    if (!wrap || !canvas || !motionBtn) return;
+    if (!wrap || !canvas) return;
 
-    // 画像パス（必要に応じて変更）
     const IMG_URL   = "/images/hero/floral.jpg";
     const DEPTH_URL = "/images/hero/floral_depth.jpg";
 
-    // ---- three setup ----
+    // three.js setup
     const renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
@@ -32,7 +32,6 @@ export default function FloralHero_Fake3D() {
     const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), null);
     scene.add(quad);
 
-    // テクスチャ
     const loader = new THREE.TextureLoader();
     const texImg   = loader.load(IMG_URL, onImageLoaded);
     const texDepth = loader.load(DEPTH_URL);
@@ -48,39 +47,37 @@ export default function FloralHero_Fake3D() {
     texDepth.wrapS = texDepth.wrapT = THREE.ClampToEdgeWrapping;
     texDepth.generateMipmaps = false;
 
-    // ---- fragment shader（object-fit:cover 対応）----
+    // fragment shader (object-fit: cover 対応)
     const frag = /* glsl */`
 precision highp float;
 
 uniform sampler2D uImage;
 uniform sampler2D uDepth;
-uniform vec2  uRes;          // (canvas width,height)*dpr
-uniform vec2  uImgRes;       // 画像の実サイズ(px)
-uniform vec2  uCoverScale;   // cover時のUVスケール（片方<=1）
-uniform vec2  uMouse;        // 0..1（ここに傾きも反映）
+uniform vec2  uRes;
+uniform vec2  uImgRes;
+uniform vec2  uCoverScale;
+uniform vec2  uMouse;
 uniform float uTime;
 
-// チューニング用
-uniform float uAmount;      // 視差量（0.03〜0.10）
-uniform float uCenterBias;  // 深度中心の補正（0.45〜0.55）
-uniform float uFalloff;     // 画面端ほど弱く（0.4〜1.2）
-uniform float uEdgeDamp;    // エッジ減衰の強さ（0〜1）
-uniform float uBlurSigma;   // 深度ぼかし（1.2〜2.2）
-uniform float uNoiseAmp;    // 微細なゆらぎ（0〜0.6）
-uniform float uVign;        // ビネット（0〜0.5）
+uniform float uAmount;
+uniform float uCenterBias;
+uniform float uFalloff;
+uniform float uEdgeDamp;
+uniform float uBlurSigma;
+uniform float uNoiseAmp;
+uniform float uVign;
 
 float gauss(float x, float s){ return exp(-(x*x)/(2.0*s*s)); }
 float rand(vec2 uv){ return fract(sin(dot(uv, vec2(12.9898,78.233))) * 43758.5453); }
 
-// object-fit: cover 相当のUV
 vec2 coverUV(vec2 uv, vec2 res, vec2 img){
   float rTex = img.x / img.y;
   float rCan = res.x / res.y;
   if (rCan > rTex){
-    float scale = rTex / rCan; // <= 1（上下トリミング）
+    float scale = rTex / rCan;
     uv.y = (uv.y - 0.5) * scale + 0.5;
   }else{
-    float scale = rCan / rTex; // <= 1（左右トリミング）
+    float scale = rCan / rTex;
     uv.x = (uv.x - 0.5) * scale + 0.5;
   }
   return uv;
@@ -88,7 +85,6 @@ vec2 coverUV(vec2 uv, vec2 res, vec2 img){
 
 float depthRaw(vec2 uv){ return texture2D(uDepth, uv).r; }
 
-// 3x3 の簡易バイラテラル（coverスケール補正込）
 float depthSmooth(vec2 uv){
   vec2 px = (1.0 / uRes) / uCoverScale;
   float c = depthRaw(uv);
@@ -106,7 +102,6 @@ float depthSmooth(vec2 uv){
   return sum/max(1e-4,wsum);
 }
 
-// 深度勾配（境界検出）
 float edge(vec2 uv){
   vec2 px = (1.0 / uRes) / uCoverScale;
   float dx = depthRaw(uv+vec2(px.x,0.0)) - depthRaw(uv-vec2(px.x,0.0));
@@ -114,7 +109,6 @@ float edge(vec2 uv){
   return smoothstep(0.02, 0.12, length(vec2(dx,dy)));
 }
 
-// 三角分布ノイズ（0±）
 float grain(vec2 uv){
   float n = rand(uv*vec2(uRes));
   float m = rand(uv*vec2(uRes.y, uRes.x));
@@ -124,48 +118,34 @@ float grain(vec2 uv){
 void main(){
   vec2 uvScr = gl_FragCoord.xy / uRes;
   vec2 uv     = coverUV(uvScr, uRes, uImgRes);
-
   vec2 c = uvScr - 0.5;
   float fall = 1.0 - smoothstep(0.0, uFalloff, length(c));
-
   vec2 m = (uMouse - 0.5) * 2.0;
-
   float d = depthSmooth(uv);
   float e = edge(uv);
   float damp = mix(1.0, 1.0 - e, uEdgeDamp);
-
   float z = (d - uCenterBias);
   vec2 parallax = m * (uAmount * z) * fall * damp;
-
   float g = grain(uvScr + vec2(uTime*0.015, -uTime*0.01));
   parallax += (g * 0.003) * uNoiseAmp;
-
   vec2 uvImg = uv + parallax;
   uvImg = mix(uvImg, clamp(uvImg, 0.0, 1.0), 0.9);
-
   vec3 col = texture2D(uImage, uvImg).rgb;
-
   float vign = smoothstep(1.0, 0.0, length(c)*1.15);
   col *= mix(1.0 - uVign, 1.0, vign);
   col = pow(col, vec3(1.0/1.03));
-
   float n = grain(uvScr * 1.8 + vec2(uTime * 0.25, -uTime * 0.22));
   n = smoothstep(0.4, 1.0, abs(n));
   col += n * 0.03 * uNoiseAmp;
-
   gl_FragColor = vec4(col, 1.0);
 }
-    `;
+`;
 
-    // カバー用スケール計算
     function getCoverScale(canvasW, canvasH, imgW, imgH) {
       const rTex = imgW / imgH;
       const rCan = canvasW / canvasH;
-      if (rCan > rTex) {
-        return new THREE.Vector2(1, rTex / rCan);
-      } else {
-        return new THREE.Vector2(rCan / rTex, 1);
-      }
+      if (rCan > rTex) return new THREE.Vector2(1, rTex / rCan);
+      else return new THREE.Vector2(rCan / rTex, 1);
     }
 
     const uniforms = {
@@ -176,7 +156,6 @@ void main(){
       uCoverScale: { value: new THREE.Vector2(1,1) },
       uMouse:      { value: new THREE.Vector2(0.5,0.5) },
       uTime:       { value: 0 },
-
       uAmount:     { value: 0.04 },
       uCenterBias: { value: 0.50 },
       uFalloff:    { value: 0.85 },
@@ -192,7 +171,6 @@ void main(){
       uniforms,
     });
 
-    // 画像ロード後に実寸を反映
     function onImageLoaded(tex) {
       const img = tex.image;
       if (img && img.width && img.height) {
@@ -204,7 +182,7 @@ void main(){
       }
     }
 
-    // ---- サイズ & DPR ----
+    // Size & DPR
     const setSize = () => {
       const wCss = wrap.clientWidth || window.innerWidth;
       const hCss = wrap.clientHeight || window.innerHeight;
@@ -214,7 +192,6 @@ void main(){
       const w = Math.floor(wCss * dpr);
       const h = Math.floor(hCss * dpr);
       uniforms.uRes.value.set(w, h);
-
       const iw = uniforms.uImgRes.value.x;
       const ih = uniforms.uImgRes.value.y;
       if (iw > 1 && ih > 1) {
@@ -226,10 +203,8 @@ void main(){
     const ro = new ResizeObserver(setSize);
     ro.observe(wrap);
 
-    // ---- 入力（マウス or 傾き） ----
+    // mouse fallback
     let tx=0.5, ty=0.5, cx=0.5, cy=0.5;
-
-    // マウス
     const onPointer = (e) => {
       const r = wrap.getBoundingClientRect();
       tx = (e.clientX - r.left) / r.width;
@@ -237,97 +212,75 @@ void main(){
     };
     window.addEventListener("pointermove", onPointer, { passive: true });
 
-    // 傾き
-    let useTilt = false;
-    let baseBeta = 0, baseGamma = 0; // キャリブレーション基準
-    const MAX_GAMMA = 22; // 左右（-90..90）→ ±MAX_GAMMA を最大入力とみなす
-    const MAX_BETA  = 22; // 前後（-180..180）→ ±MAX_BETA を最大入力とみなす
+    // tilt motion setup
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-    const onOrientation = (ev) => {
-      // iOS/Androidで beta:前後(-180..180), gamma:左右(-90..90)
-      const beta  = ev.beta  ?? 0; // 前後
-      const gamma = ev.gamma ?? 0; // 左右
+    function handleOrientation(e) {
+      const { beta = 0, gamma = 0 } = e;
+      const nx = THREE.MathUtils.clamp((gamma + 45) / 90, 0, 1);
+      const ny = THREE.MathUtils.clamp((beta + 45) / 90, 0, 1);
+      tx = nx;
+      ty = ny;
+    }
 
-      // 初回を基準（いま向いている方向を「中心」に）
-      if (!baseBeta && !baseGamma) {
-        baseBeta = beta;
-        baseGamma = gamma;
-      }
-
-      const dx = THREE.MathUtils.clamp((gamma - baseGamma) / MAX_GAMMA, -1, 1);
-      const dy = THREE.MathUtils.clamp((beta  - baseBeta ) / MAX_BETA , -1, 1);
-
-      // 見た目に合わせて左右はそのまま、上下は反転が自然なことが多い
-      const x = 0.5 + dx * 0.35; // 振れ幅は控えめ（0.35）
-      const y = 0.5 - dy * 0.35;
-
-      tx = THREE.MathUtils.clamp(x, 0, 1);
-      ty = THREE.MathUtils.clamp(y, 0, 1);
-    };
-
-    // 権限リクエスト（iOS）
     async function enableMotion() {
       try {
-        if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-          const res = await DeviceOrientationEvent.requestPermission();
-          if (res !== "granted") return;
+        if (isIOS && typeof DeviceMotionEvent !== "undefined" &&
+            typeof DeviceMotionEvent.requestPermission === "function") {
+          await DeviceMotionEvent.requestPermission().catch(()=>{});
         }
-        window.addEventListener("deviceorientation", onOrientation, { passive: true });
-        useTilt = true;
-        // 一度押したら非表示
-        motionBtn.style.display = "none";
-        // キャリブレーションをリセット
-        baseBeta = 0; baseGamma = 0;
-      } catch (e) {
-        // 失敗時はボタン残す（ユーザーが再トライできるように）
-        console.warn("Motion permission failed:", e);
+        if (isIOS && typeof DeviceOrientationEvent !== "undefined" &&
+            typeof DeviceOrientationEvent.requestPermission === "function") {
+          const s = await DeviceOrientationEvent.requestPermission();
+          if (s !== "granted") throw new Error("Orientation permission denied");
+        }
+        window.addEventListener("deviceorientation", handleOrientation, true);
+        tiltEnabled.current = true;
+      } catch (err) {
+        console.warn("[tilt] permission error:", err);
       }
     }
 
-    // モバイルらしさ判定（ざっくり）
-    const isLikelyMobile = /Android|webOS|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent) || (window.matchMedia && window.matchMedia("(pointer:coarse)").matches);
-
-    // 対応可ならボタン表示・有効化
-    const deviceHasAPI = ("DeviceOrientationEvent" in window);
-    if (isLikelyMobile && deviceHasAPI) {
-      motionBtn.style.display = "inline-flex";
-      motionBtn.addEventListener("click", enableMotion, { passive: true });
-      // Androidなどは権限不要な場合もあるので、クリック前に先に試すオプション
-      // window.addEventListener("deviceorientation", onOrientation, { passive: true });
-      // useTilt = true; motionBtn.style.display = "none";
-    } else {
-      motionBtn.style.display = "none";
+    function attachGestureOnce() {
+      const handler = () => {
+        enableMotion();
+        detach();
+      };
+      const events = ["pointerdown", "touchstart", "mousedown", "keydown"];
+      function detach() { events.forEach(ev=>window.removeEventListener(ev, handler, opts)); }
+      const opts = { once: true, passive: true };
+      events.forEach(ev=>window.addEventListener(ev, handler, opts));
+      return detach;
     }
 
-    // ---- ループ ----
+    let detachGesture = null;
+    if (isIOS) {
+      detachGesture = attachGestureOnce();
+    } else {
+      window.addEventListener("deviceorientation", handleOrientation, true);
+      tiltEnabled.current = true;
+    }
+
+    // render loop
     let raf=0, t0=performance.now();
     const tick = () => {
       raf = requestAnimationFrame(tick);
       const now = performance.now();
       const dt  = Math.min(0.033, (now - t0)/1000); t0 = now;
-
-      // 慣性 + 自動ゆらぎ（何もしなくても少し動く）
       cx += (tx - cx) * 0.09;
       cy += (ty - cy) * 0.09;
-
-      // 傾き未使用の時だけ微オート（スマホでも未許可/非対応なら動く）
-      if (!useTilt) {
-        const autoX = 0.5 + 0.01*Math.sin(now*0.0004);
-        const autoY = 0.5 + 0.01*Math.cos(now*0.00033);
-        uniforms.uMouse.value.set(
-          THREE.MathUtils.lerp(cx, autoX, 0.18),
-          THREE.MathUtils.lerp(cy, autoY, 0.18)
-        );
-      } else {
-        uniforms.uMouse.value.set(cx, cy);
-      }
-
+      const autoX = 0.5 + 0.01*Math.sin(now*0.0004);
+      const autoY = 0.5 + 0.01*Math.cos(now*0.00033);
+      uniforms.uMouse.value.set(
+        THREE.MathUtils.lerp(cx, autoX, 0.18),
+        THREE.MathUtils.lerp(cy, autoY, 0.18)
+      );
       uniforms.uTime.value += dt;
       renderer.render(scene, camera);
     };
     tick();
 
-    // ---- cleanup ----
     const onVis = () => {
       if (document.hidden) cancelAnimationFrame(raf);
       else { t0 = performance.now(); tick(); }
@@ -337,51 +290,34 @@ void main(){
     return () => {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("pointermove", onPointer);
-      window.removeEventListener("deviceorientation", onOrientation);
-      motionBtn.removeEventListener("click", enableMotion);
+      detachGesture?.();
       ro.disconnect();
       cancelAnimationFrame(raf);
       renderer.dispose();
       quad.geometry.dispose();
-      if (quad.material) quad.material.dispose();
+      quad.material?.dispose();
       texImg.dispose?.();
       texDepth.dispose?.();
     };
   }, []);
 
   return (
-    <>
-      {/* WebGL 背景 */}
-      <div ref={wrapRef} className="floral-fake3d-wrap" aria-hidden>
-        <canvas ref={canvasRef} className="floral-fake3d-canvas" />
-      </div>
-
-      {/* モーション有効化ボタン（wrapはpointer-events:noneなので、別要素で） */}
-      <button ref={motionBtnRef} className="motion-enable-btn" type="button" aria-label="Enable Motion">
-        Enable Motion
-      </button>
-
+    <div ref={wrapRef} className="floral-fake3d-wrap" aria-hidden>
+      <canvas ref={canvasRef} className="floral-fake3d-canvas" />
       <style jsx>{`
-        .floral-fake3d-wrap { position: fixed; inset: 0; z-index: -1; background:#000; pointer-events:none; }
-        .floral-fake3d-canvas { width:100%; height:100%; display:block; }
-
-        .motion-enable-btn{
+        .floral-fake3d-wrap {
           position: fixed;
-          right: 12px; bottom: 12px;
-          z-index: 10;
-          display: none; /* JSで必要な時だけ表示 */
-          padding: 10px 14px;
-          font-size: 12px;
-          letter-spacing: 0.04em;
-          border-radius: 999px;
-          border: 1px solid rgba(255,255,255,0.2);
-          background: rgba(20,20,20,0.6);
-          color: #fff;
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
+          inset: 0;
+          z-index: -1;
+          background:#000;
+          pointer-events:none;
         }
-        .motion-enable-btn:active{ transform: translateY(1px); }
+        .floral-fake3d-canvas {
+          width:100%;
+          height:100%;
+          display:block;
+        }
       `}</style>
-    </>
+    </div>
   );
 }
