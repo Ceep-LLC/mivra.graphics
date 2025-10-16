@@ -1,3 +1,53 @@
+/* ******************************
+ *
+ * RESPONSIVE MIXIN
+ *
+ * ****************************** */
+/* ******************************
+ *
+ * FONT SETTINGS
+ *
+ * ****************************** */
+@-webkit-keyframes loopCl {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+@keyframes loopCl {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes loopClRv {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+@keyframes loopClRv {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
 .process-cards {
   position: relative;
   width: 100%;
@@ -11,9 +61,11 @@
   height: 100svh;
   background-color: var(--foreground);
   color: var(--background);
-  padding: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  gap: 3rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   will-change: transform;
 }
 
@@ -26,26 +78,36 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: var(--after-opacity, 0);
+  -webkit-transition: opacity 0.1s ease;
   transition: opacity 0.1s ease;
   pointer-events: none;
   z-index: 2;
 }
 
 .process-card-index {
-  flex: 2;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
   color: var(--background);
 }
 
 .process-card-content {
-  flex: 4;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
   padding-top: 1.5rem;
   color: var(--background);
 }
 
 .process-card-content-wrapper {
   width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 1.5rem;
 }
 
@@ -58,37 +120,188 @@
 }
 
 .process-card-copy {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 1.5rem;
 }
 
 .process-card-copy-title {
-  flex: 2;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 .process-card-copy-description {
-  flex: 4;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
 }
 
 @media (max-width: 1000px) {
   .process-card {
     gap: 0;
   }
-
   .process-card,
   .process-card-copy {
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
-
   .process-card-copy {
     gap: 0.5rem;
   }
-
   .process-card-index {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
   }
-
   .process-card-content-wrapper {
     width: 100%;
   }
 }
+.processCard {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+@media screen and (min-width: 320px) {
+  .processCard {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+.processCard_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+@media screen and (min-width: 320px) {
+  .processCard_text {
+    width: 100%;
+    padding: 21.5% 5% 4% 7.5%;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard_text {
+    width: 40%;
+    padding: 6.5% 5% 4% 7.5%;
+  }
+}
+.processCard_textBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  line-height: 1.46;
+  gap: 16px;
+}
+@media screen and (min-width: 320px) {
+  .processCard_textBottom {
+    padding: 32px 0 0 2.5rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard_textBottom {
+    padding: 0 0 0 2.5rem;
+  }
+}
+@media screen and (min-width: 320px) {
+  .processCard_textBottom p {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard_textBottom p {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (min-width: 320px) {
+  .processCard_textBottom .en {
+    font-size: 80%;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard_textBottom .en {
+    font-size: 88%;
+  }
+}
+@media screen and (min-width: 320px) {
+  .processCard_img {
+    width: 100%;
+    height: 22rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard_img {
+    width: 60%;
+    height: auto;
+  }
+}
+.processCard_imgWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.processCard_img img {
+  display: block;
+  position: absolute;
+  inset: 0 0 auto auto;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.processCard_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+@media screen and (min-width: 320px) {
+  .processCard_header {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard_header {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (min-width: 320px) {
+  .processCard_name {
+    font-size: 3.2rem;
+    padding: 16px 0 0 2.5rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .processCard_name {
+    font-size: 5.6rem;
+    padding: 16px 0 0 2.5rem;
+  }
+}/*# sourceMappingURL=ProcessCards.css.map */

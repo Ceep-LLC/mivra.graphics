@@ -48,9 +48,9 @@
   text-align: center;
   p {
     filter: opacity(.96);
-    line-height: 1.46;
-    @include mq(sm) {font-size: 1.26rem; margin-top: 24px;}
-    @include mq(md) {font-size:  1.8rem; margin-top: 48px;}
+    line-height: 1.72;
+    @include mq(sm) {font-size: 1.4rem; margin-top: 24px;}
+    @include mq(md) {font-size: 1.6rem; margin-top: 48px;}
     .sp {
       @include mq(md) {display: none;}
     }
@@ -162,8 +162,14 @@
   }
   &_grid {
     display: grid;
-    @include mq(sm) {width: 100%; grid-template-columns: repeat(2, 1fr); gap: 16px; font-size: 1.26rem;}
-    @include mq(md) {width:  50%; grid-template-columns: repeat(1, 1fr); gap: 24px; font-size:  1.4rem;}
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+    @include mq(sm) {width: 100%; padding: 0 1rem 0 6rem;}
+    @include mq(md) {width:  50%; padding: 0;}
+    p {
+      @include mq(sm) {font-size: 1.4rem;}
+      @include mq(md) {font-size: 1.6rem;}
+    }
   }
   &_item {
     text-align: left;

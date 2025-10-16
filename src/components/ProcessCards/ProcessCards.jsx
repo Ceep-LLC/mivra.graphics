@@ -11,31 +11,39 @@ const ProcessCards = () => {
   const processCardsData = [
     {
       index: "01",
-      title: "Principles",
+      title: "Web Design & Development",
       image: "/images/process/process_001.jpeg",
       description:
-        "We design with restraint and intention. Every decision is shaped by a set of values—clarity, structure, and calm execution.",
+        "The heart of MIVRA’s craft. We merge graphic, typographic, and interactive elements into a single living canvas — designing and developing websites as functional works of art. Our approach values both aesthetics and usability, building systems that evolve gracefully over time.",
+      description_ja:
+        "MIVRAの核となる領域。グラフィック、タイポグラフィ、インタラクション、アニメーション——あらゆる要素を一枚のキャンバス上で有機的に結びつけ、機能する“作品”としてのウェブサイトを設計・開発します。美しさと操作性の共存、そして時間とともに進化していく構造を大切にしています。",
     },
     {
       index: "02",
-      title: "Approach",
-      image: "/images/process/process_002.jpeg",
+      title: "Graphic Design & Art Direction",
+      image: "/images/process/process_004.jpeg",
       description:
-        "Our process is iterative and deliberate. We prioritize simplicity over excess, and build systems that scale with clarity.",
+        "Tangible design that holds presence and depth. From visual identity to printed matter, we craft compositions with precision and silence — treating every piece as architectural space on paper.",
+      description_ja:
+        "印刷物、ロゴ、ビジュアルアイデンティティ。触れられるデザインとしての重みと美しさを追求します。構成・余白・質感にこだわり、ブランドが持つ空気感を“紙の上の建築物”のように設計します。",
     },
     {
       index: "03",
-      title: "Practice",
-      image: "/images/process/process_003.jpeg",
+      title: "Photography",
+      image: "/images/process/process_002.jpeg",
       description:
-        "We work at the intersection of design and code. Every detail is shaped by consistency, rhythm, and quiet precision.",
+        "We capture stillness, light, and texture — revealing the quiet strength within every subject. Each frame is guided by the atmosphere and intent of the brand, expressing beauty that speaks softly but stays in memory.",
+      description_ja:
+        "静寂の中に流れる空気、光、温度。被写体の“本質”をすくい上げるように撮影します。ブランドの世界観やプロジェクトの文脈に合わせて、静けさの中にある強さと美しさを引き出すことを意識しています。",
     },
     {
       index: "04",
-      title: "Vision",
-      image: "/images/process/process_004.jpeg",
+      title: "Film & Motion",
+      image: "/images/process/process_003.jpeg",
       description:
-        "We believe the web should feel honest and effortless. Our aim is to create digital experiences that stand the test of time.",
+        "Designing the rhythm of light and time. Our films explore the harmony between stillness and motion — evoking quiet emotion and allowing audiences to feel the essence of a brand.",
+      description_ja:
+        "光と時間をデザインする領域。MIVRAでは“静”と“動”の調和を意識し、映像作品を構築します。見る人の感情を静かに動かし、世界観を深く体験させるための編集・構成・演出を追求します。",
     },
   ];
 
@@ -80,26 +88,23 @@ const ProcessCards = () => {
   return (
     <div className="process-cards">
       {processCardsData.map((cardData, index) => (
-        <div key={index} className="process-card">
-          <div className="process-card-index">
-            <h1>{cardData.index}</h1>
+        <div key={index} className="process-card processCard">
+          <div className="processCard_text">
+            <div className="processCard_textTop">
+              <div className="processCard_header">
+                <span>{cardData.index}</span>
+                <span>OUR APPROACH</span>
+              </div>
+              <h3 className="processCard_name">{cardData.title}</h3>
+            </div>
+            <div className="processCard_textBottom">
+              <p className="processCard_desc">{cardData.description_ja}</p>
+              <p className="processCard_desc en">{cardData.description}</p>
+            </div>
           </div>
-          <div className="process-card-content">
-            <div className="process-card-content-wrapper">
-              <h1 className="process-card-header">{cardData.title}</h1>
-
-              <div className="process-card-img">
-                <img src={cardData.image} alt="" />
-              </div>
-
-              <div className="process-card-copy">
-                <div className="process-card-copy-title">
-                  <p className="caps">(About the state)</p>
-                </div>
-                <div className="process-card-copy-description">
-                  <p>{cardData.description}</p>
-                </div>
-              </div>
+          <div className="processCard_img">
+            <div className="processCard_imgWrapper">
+              <img src={cardData.image} alt="" />
             </div>
           </div>
         </div>
