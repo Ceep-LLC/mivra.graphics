@@ -37,7 +37,7 @@ const jpFont = localFont({
 export const metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: `MIVRA | 磯上和志 - 福島県いわき市のデザインスタジオ`,
+    default: `MIVRA | 磯上和志デザイン事務所 - 福島県いわき市のホームページ制作、ロゴデザイン、出張撮影など`,
     template: `%s | MIVRA`,
   },
   description: SITE.description,
@@ -47,7 +47,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: SITE.domain,
-    title: "MIVRA | 磯上和志 - 福島県いわき市のデザインスタジオ",
+    title: "MIVRA | 磯上和志デザイン事務所 - 福島県いわき市のホームページ制作、ロゴデザイン、出張撮影など",
     description: SITE.description,
     siteName: SITE.name,
     locale: SITE.locale,
