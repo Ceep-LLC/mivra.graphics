@@ -28,7 +28,7 @@ const enFontMain = localFont({
 // 日本語本文用
 const jpFont = localFont({
   src: [
-    { path: "../fonts/ZenKakuGothicNew-Medium.ttf", weight: "400", style: "normal" },
+    { path: "../fonts/NotoSansJP-Medium.ttf", weight: "400", style: "normal" },
   ],
   variable: "--font-main-jp",
   display: "swap",

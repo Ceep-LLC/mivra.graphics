@@ -129,23 +129,21 @@ export default function StudioClient() {
             <div className="mission-intro-copy">
               <Copy>
                 <h3>
-                  We are a digital studio dedicated to creating clear and
-                  purposeful online experiences. Our work is rooted in
-                  structure, guided by systems, and shaped through close
-                  collaboration.
+                  We are a design-driven studio exploring the intersection of clarity and craft.
+                  Our approach blends thoughtful structure with subtle emotion, turning ideas
+                  into timeless, functional design systems.
                 </h3>
                 <br />
                 <h3>
-                  With a focus on design and development, we build scalable
-                  solutions that reflect quiet precision and long-term value.
-                  Every project is an exercise in restraint, intention, and
-                  technical care.
+                  Through strategy, design, and technology, we shape identities and experiences
+                  that resonate with purpose. Every detail is considered, every outcome built
+                  to endure.
+                </h3>
+                <h3 className="ja">
+                サイト制作、ロゴ、印刷物、撮影など、事業やブランドの本質を伝えるための表現を幅広く手がけています。  
+                一つひとつの案件に丁寧に向き合い、確かな成果を積み重ねていきます。
                 </h3>
               </Copy>
-
-              <div className="mission-link">
-                <BtnLink route="/work" label="View Work" dark />
-              </div>
             </div>
           </div>
         </section>

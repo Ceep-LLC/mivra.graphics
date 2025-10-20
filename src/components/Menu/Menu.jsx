@@ -341,8 +341,9 @@ const Menu = ({ onMenuStateChange }) => {
 
             <div className="nav-menu-toggle-open">
               <div className="revealer" onClick={openMenu}>
-                <p className="sm caps mono" ref={menuBtnRef}>
-                  Menu
+                <p className="openText sm caps mono" ref={menuBtnRef}>
+                  <span className="dot"><span></span></span>
+                  <span>Menu</span>
                 </p>
               </div>
             </div>
@@ -417,22 +418,18 @@ const Menu = ({ onMenuStateChange }) => {
               </a>
             </div>
           </div>
-          <div className="menu-footer" ref={menuFooterColsRef}>
+          <div className="menuFooter menu-footer" ref={menuFooterColsRef}>
             <div className="menu-footer-col">
-              <div className="revealer">
-                <p className="sm caps mono">&copy; 2025 All Rights Reserved</p>
-              </div>
+              <div className="revealer"><p className="menuFooter_item"><a href="/contact" onClick={(e) => {e.preventDefault(); navigateTo("/contact");}}>Web Form</a></p></div>
+              <div className="revealer"><p className="menuFooter_item"><a href="tel:0246-88-8956">+81 246 88 8956</a></p></div>
+              <div className="revealer"><p className="menuFooter_item"><a href="mailto:hello@mivra.graphics">hello@mivra.graphics</a></p></div>
+              <div className="revealer"><p className="menuFooter_item"><a href="https://www.instagram.com/kzs86/" target="_blank">@kzs86</a></p></div>
+              <div className="revealer"><p className="menuFooter_item"><a href="https://maps.app.goo.gl/BfKZVLpT37LvCr3n7" target="_blank">Google Map</a></p></div>
             </div>
             <div className="menu-footer-col">
               <div className="socials">
                 <div className="revealer">
-                  <a
-                    className="sm caps mono"
-                    href="https://www.instagram.com/kzs86/"
-                    target="_blank"
-                  >
-                    Instagram
-                  </a>
+                  <p>&copy; 2025 MIVRA</p>
                 </div>
               </div>
             </div>

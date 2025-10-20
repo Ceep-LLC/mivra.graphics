@@ -138,7 +138,7 @@
 }
 @media screen and (min-width: 600px) {
   .studio-header p {
-    font-size: 1.6rem;
+    font-size: 2rem;
     margin-top: 48px;
   }
 }
@@ -190,6 +190,21 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1.5rem;
+}
+.mission-intro-copy .ja {
+  line-height: 1.64;
+}
+@media screen and (min-width: 320px) {
+  .mission-intro-copy .ja {
+    font-size: 1.42rem;
+    padding: 32px 20% 0 0;
+  }
+}
+@media screen and (min-width: 600px) {
+  .mission-intro-copy .ja {
+    font-size: 2rem;
+    padding: 32px 20% 0 0;
+  }
 }
 
 .mission-link {
@@ -326,7 +341,7 @@
 }
 @media screen and (min-width: 600px) {
   .philosophy_grid p {
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
 }
 .philosophy_item {

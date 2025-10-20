@@ -50,7 +50,7 @@
     filter: opacity(.96);
     line-height: 1.72;
     @include mq(sm) {font-size: 1.4rem; margin-top: 24px;}
-    @include mq(md) {font-size: 1.6rem; margin-top: 48px;}
+    @include mq(md) {font-size:   2rem; margin-top: 48px;}
     .sp {
       @include mq(md) {display: none;}
     }
@@ -86,6 +86,11 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  .ja {
+    line-height: 1.64;
+    @include mq(sm) {font-size: 1.42rem; padding: 32px 20% 0 0;}
+    @include mq(md) {font-size:    2rem; padding: 32px 20% 0 0;}
+  }
 }
 
 .mission-link {
@@ -168,7 +173,7 @@
     @include mq(md) {width:  50%; padding: 0;}
     p {
       @include mq(sm) {font-size: 1.4rem;}
-      @include mq(md) {font-size: 1.6rem;}
+      @include mq(md) {font-size:   2rem;}
     }
   }
   &_item {

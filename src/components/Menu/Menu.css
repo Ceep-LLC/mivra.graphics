@@ -278,7 +278,7 @@ img.logo-img {
 }
 @media screen and (min-width: 600px) {
   .revealer {
-    font-size: 1.4rem;
+    font-size: 2rem;
   }
 }
 
@@ -303,4 +303,139 @@ img.logo-img {
             align-items: flex-end;
     gap: 0.5rem;
   }
+}
+@-webkit-keyframes openDot {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.6);
+            transform: scale(1.6);
+  }
+}
+@keyframes openDot {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.6);
+            transform: scale(1.6);
+  }
+}
+.openText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+}
+.openText .dot {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media screen and (min-width: 320px) {
+  .openText .dot {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .openText .dot {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+.openText .dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: rgba(255, 255, 255, 0.32);
+  border-radius: 50%;
+  -webkit-animation: openDot 1600ms ease infinite both;
+          animation: openDot 1600ms ease infinite both;
+}
+.openText .dot span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 60%;
+  height: 60%;
+  background: rgba(255, 255, 255, 0.48);
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 320px) {
+  .menuFooter {
+    padding: 16px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .menuFooter {
+    padding: 32px;
+  }
+}
+.menuFooter_item {
+  margin-top: 4px;
+}
+@media screen and (min-width: 320px) {
+  .menuFooter_item {
+    font-size: 2.4rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .menuFooter_item {
+    font-size: 3.2rem;
+  }
+}
+.menuFooter_item a {
+  position: relative;
+  display: inline-block;
+  -webkit-transition: -webkit-transform 400ms ease;
+  transition: -webkit-transform 400ms ease;
+  transition: transform 400ms ease;
+  transition: transform 400ms ease, -webkit-transform 400ms ease;
+}
+.menuFooter_item a::after {
+  content: "";
+  position: absolute;
+  inset: auto auto 0 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--color-white);
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: center right;
+          transform-origin: center right;
+  -webkit-transition: -webkit-transform 400ms ease;
+  transition: -webkit-transform 400ms ease;
+  transition: transform 400ms ease;
+  transition: transform 400ms ease, -webkit-transform 400ms ease;
+}
+.menuFooter_item a:hover {
+  -webkit-transform: translateX(16px);
+          transform: translateX(16px);
+}
+.menuFooter_item a:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: center left;
+          transform-origin: center left;
 }/*# sourceMappingURL=Menu.css.map */
