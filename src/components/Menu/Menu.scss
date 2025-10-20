@@ -2,30 +2,29 @@
 
 .menu {
   position: fixed;
-  top: 0;
+  inset: 0 auto auto 0;
   left: 0;
-  width: 100vw;
-  height: 100svh;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   pointer-events: none;
   z-index: 10000;
-}
-
-.menu a,
-.menu p {
-  position: relative;
-  color: var(--foreground);
-  display: block;
-  text-decoration: none;
-  line-height: 1;
-  will-change: transform;
-  -webkit-font-smoothing: antialiased;
+  a, p {
+    position: relative;
+    color: var(--foreground);
+    display: block;
+    text-decoration: none;
+    line-height: 1;
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 .nav-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: auto;
   z-index: 1000;
   mix-blend-mode: difference;
@@ -35,21 +34,22 @@
 .nav {
   pointer-events: all;
   position: relative;
-  width: 100vw;
+  width: 100%;
   padding: 1.5rem;
   display: flex;
   gap: 1.5rem;
 }
 
-.nav a,
-.nav p {
-  position: relative;
-  color: var(--foreground);
-  display: block;
-  text-decoration: none;
-  line-height: 1;
-  will-change: transform;
-  -webkit-font-smoothing: antialiased;
+.nav {
+  a, p {
+    position: relative;
+    color: var(--foreground);
+    display: flex;
+    text-decoration: none;
+    line-height: 1;
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 .nav-logo {
@@ -72,13 +72,14 @@
   height: max-content;
 }
 
-.nav-menu-toggle-open .revealer {
+.nav-menu-toggle-open {
   cursor: pointer;
 }
 
 img.logo-img {
-  @include mq(sm) {width: 6.4rem;}
-  @include mq(md) {width: 6.4rem;}
+  height: auto;
+  @include mq(sm) {width:  6.4rem;}
+  @include mq(md) {width: 10.4rem;}
 }
 
 .menu-overlay {
@@ -163,6 +164,8 @@ img.logo-img {
   position: relative;
   width: max-content;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  @include mq(sm) {font-size: 1.4rem;}
+  @include mq(md) {font-size: 1.4rem;}
 }
 
 @media (max-width: 1000px) {

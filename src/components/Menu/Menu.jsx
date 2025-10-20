@@ -326,7 +326,7 @@ const Menu = ({ onMenuStateChange }) => {
               >
                 <img
                   className="logo-img"
-                  src="/images/logos/type_wh.svg"
+                  src="/images/logos/logo_type_wh.svg"
                   alt="MIVRA(ミブラ)"
                 />
               </a>

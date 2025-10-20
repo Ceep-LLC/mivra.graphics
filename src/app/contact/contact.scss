@@ -1,0 +1,236 @@
+@import '../_variable';
+
+.contactBody {
+  margin: 0 auto;
+  @include mq(sm) {padding:   64px 10vw 80px; width:   100%;}
+  @include mq(md) {padding: 22rem 2.5vw 3rem; width: 35.8vw;}
+}
+
+.contactHead {
+  &_top {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    border-bottom: solid 1px;
+    @include mq(sm) {margin-bottom: 16px; padding-bottom: 16px;}
+    @include mq(md) {margin-bottom: 16px; padding-bottom: 16px;}
+  }
+  &_ja {
+    position: relative;
+    display: flex;
+    align-items: center;
+    @include mq(sm) {font-size: 1.8rem;}
+    @include mq(md) {font-size: 1.8rem;}
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0 -16px auto auto;
+      display: block;
+      width: 1px;
+      height: 100%;
+      background: var(--color-white);
+    }
+  }
+  &_en {
+    @include mq(sm) {font-size: 1.4rem;}
+    @include mq(md) {font-size: 1.4rem;}
+  }
+  &_bottom {
+    @include mq(sm) {font-size: 1.4rem;}
+    @include mq(md) {font-size: 1.4rem;}
+  }
+}
+
+.contactForm {
+  @include mq(sm) {margin-top: 32px;}
+  @include mq(md) {margin-top: 32px;}
+}
+
+.contactGrid {
+  &_item {
+    @include mq(sm) {margin-bottom: 24px;}
+    @include mq(md) {margin-bottom: 24px;}
+  }
+  &_label {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+    @include mq(sm) {font-size: 1.4rem;}
+    @include mq(md) {font-size: 1.4rem;}
+    span {
+      position: relative;
+      display: inline-block;
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0 -12px auto auto;
+        width: 1px;
+        height: 100%;
+        background: var(--color-white);
+      }
+    }
+  }
+  &_input {
+    border-radius: 0;
+    font-size: 16px;
+    @include mq(sm) {padding: 1.2rem 2rem;}
+    @include mq(md) {padding: 1.2rem 2rem;}
+  }
+  &_atten {
+    text-align: center;
+    @include mq(sm) {font-size: 1.2rem;}
+    @include mq(md) {font-size: 1.2rem;}
+  }
+  &_submit {
+    justify-content: center;
+  }
+}
+
+.contactLinks {
+  @include mq(sm) {margin: 48px 0 24px;}
+  @include mq(md) {margin:      32px 0;}
+  &_item {
+    @include mq(sm) {font-size: 2.4rem; padding: 4px 0;}
+    @include mq(md) {font-size: 3.2rem; padding: 4px 0;}
+    &.wf {
+      @include mq(md) {display: none;}
+    }
+    a {
+      position: relative;
+      display: inline-block;
+      color: var(--color-white);
+      &::after {
+        content: "";
+        position: absolute;
+        inset: auto auto 0 0;
+        width: 100%;
+        height: 1px;
+        background: var(--color-white);
+        transform: scaleX(0);
+        transform-origin: center right;
+        transition: transform 400ms ease;
+      }
+      &:hover {
+        &::after {
+          transform: scaleX(1);
+          transform-origin: center left;
+        }
+      }
+    }
+  }
+}
+
+.contactCopy {
+  @include mq(sm) {padding: 10rem 6.5vw 0 12.5vw;}
+  @include mq(md) {padding:       0 64px 0 7.5vw;}
+  &_wrapper {
+    position: sticky;
+    top: 22rem;
+  }
+  &_name {
+    @include mq(sm) {margin-bottom: 6px; font-size: 1.8rem;}
+    @include mq(md) {margin-bottom: 4px; font-size: 2.4rem;}
+  }
+  &_area {
+    @include mq(sm) {font-size: 1.24rem;}
+    @include mq(md) {font-size:  1.4rem;}
+  }
+  &_imgs {
+    position: relative;
+    overflow: hidden;
+    @include mq(sm) {inset: auto auto auto -10.5vw; width: calc(100% + 14vw); margin-top: 32px;}
+    @include mq(md) {inset:  auto auto auto -6.5vw; width:  calc(100% + 5vw); margin-top: 64px;}
+  }
+  &_imgsWrapper {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    @include mq(sm) {width: 120%;}
+    @include mq(md) {width: 120%;}
+  }
+  &_imgsItem {
+    width: 32%;
+  }
+  &_imgsItemWrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 66.67%;
+    overflow: hidden;
+    img {
+      position: absolute;
+      inset: 0 0 auto auto;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+
+
+
+.contact {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  min-height: 100svh;
+  background-color: var(--background);
+  color: var(--foreground);
+  display: flex;
+  justify-content: center;
+  overflow: clip;
+  @include mq(sm) {flex-direction: column;}
+  @include mq(md) {flex-direction:    row;}
+}
+
+.contact-copy,
+.contact-copy-addresses {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contact-copy-addresses {
+  position: relative;
+  line-height: 1.2;
+  @include mq(sm) {padding-left:  0; font-size: 1.14rem;}
+  @include mq(md) {padding-left: 30%; font-size: 1.24rem;}
+  .line {
+    @include mq(sm) {text-align: right !important;}
+    @include mq(md) {text-align:  left !important;}
+  }
+}
+
+.contact-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  padding: 1.5rem;
+  display: flex;
+  gap: 3rem;
+}
+
+.fc-col-lg {
+  flex: 4;
+}
+
+.fc-col-sm {
+  flex: 2;
+}
+
+.contact-copy-links a {
+  color: var(--foreground);
+}
+
+.footer-text {
+  overflow: hidden;
+}
+
+.footer-text-content {
+  display: inline-block;
+}

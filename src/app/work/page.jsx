@@ -13,6 +13,12 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+export const metadata = {
+  title: "制作実績 | MIVRA",
+  description:
+    "MIVRA（磯上和志デザイン事務所）の制作実績一覧です。Webサイト、ロゴ、グラフィック、写真撮影など、これまで手掛けてきた多様なクリエイティブワークをご紹介します。クライアントの想いをかたちにするデザインをぜひご覧ください。",
+};
+
 const page = () => {
   const workRef = useRef(null);
   const router = useTransitionRouter();
